@@ -1,0 +1,25 @@
+# Maven
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Variables de entorno con keys secretas
+.env
+
+# Uploads locales
+src/main/resources/static/uploads/
+
+# Artefactos de herramientas de migración / logs
+.github/java-upgrade/
+.github/modernize/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
