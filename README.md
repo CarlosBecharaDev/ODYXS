@@ -32,6 +32,22 @@ cp .env.example .env
 # edita .env y ajusta las contraseñas y (opcionalmente) tu GEMINI_API_KEY
 ```
 
+### Opción rápida: todo con Docker
+
+Levanta **base de datos + aplicación** con un solo comando (no necesitas Java
+ni Maven instalados):
+
+```bash
+docker compose up -d --build      # construye la app y arranca db + app
+```
+
+App en 👉 **http://localhost:8080** (la app espera a que la BD esté `healthy`).
+
+Si prefieres correr solo la BD en Docker y la app en tu máquina, sigue los
+pasos 3 y 4.
+
+---
+
 ### 3. Levantar la base de datos con Docker
 
 La base de datos está contenerizada. El esquema y los datos iniciales
@@ -39,7 +55,7 @@ La base de datos está contenerizada. El esquema y los datos iniciales
 crea el contenedor.
 
 ```bash
-docker compose up -d
+docker compose up -d db      # solo el servicio de base de datos
 ```
 
 Comprobar que está lista:
