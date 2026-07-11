@@ -9,25 +9,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
 public class StorageService {
+
+    /** Solo se aceptan estos tipos de imagen. */
+    private static final Set<String> TIPOS_PERMITIDOS =
+            Set.of("image/jpeg", "image/png", "image/webp", "image/gif");
 
     @Value("${odyxs.upload.dir:${user.home}/odyxs-uploads}")
     private String uploadBaseDir;
 
     public String guardarImagen(MultipartFile file, String subDir) {
         if (file == null || file.isEmpty()) return null;
-        
+
         String contentType = file.getContentType();
-        if (contentType == null || !contentType.startsWith("image/")) return null;
+        if (contentType == null || !TIPOS_PERMITIDOS.contains(contentType.toLowerCase())) return null;
 
         try {
             Path directory = Paths.get(uploadBaseDir, subDir);
             Files.createDirectories(directory);
 
-            String extension = getExtension(file.getOriginalFilename(), contentType);
+            // La extensión se deriva del tipo de contenido validado, nunca del
+            // nombre original del archivo (evita guardar cosas como "evil.jsp").
+            String extension = extensionPara(contentType);
             String fileName = UUID.randomUUID().toString() + extension;
             Path targetLocation = directory.resolve(fileName);
 
@@ -52,15 +59,12 @@ public class StorageService {
         }
     }
 
-    private String getExtension(String originalFilename, String contentType) {
-        if (originalFilename != null && originalFilename.contains(".")) {
-            return originalFilename.substring(originalFilename.lastIndexOf("."));
-        }
-        return switch (contentType) {
-            case "image/png" -> ".png";
+    private String extensionPara(String contentType) {
+        return switch (contentType.toLowerCase()) {
+            case "image/png"  -> ".png";
             case "image/webp" -> ".webp";
-            case "image/gif" -> ".gif";
-            default -> ".jpg";
+            case "image/gif"  -> ".gif";
+            default            -> ".jpg";
         };
     }
 }
