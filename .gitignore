@@ -10,8 +10,9 @@ target/
 # Variables de entorno con keys secretas
 .env
 
-# Uploads locales
-src/main/resources/static/uploads/
+# Uploads en runtime (StorageService escribe en ~/odyxs-uploads, NO aquí).
+# Las imágenes semilla del demo en src/main/resources/static/uploads/ SÍ se versionan.
+~/odyxs-uploads/
 
 # Artefactos de herramientas de migración / logs
 .github/java-upgrade/

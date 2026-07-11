@@ -4,6 +4,27 @@ Aplicación web de guía turística de Cartagena (lugares, eventos, actividades,
 
 ---
 
+## 📸 Capturas
+
+### Inicio
+![Página de inicio](docs/screenshots/inicio.jpg)
+
+### Lugares
+![Lugares](docs/screenshots/lugares.jpg)
+
+### Actividades
+![Actividades](docs/screenshots/actividades.jpg)
+
+| Eventos | Mapa |
+|---------|------|
+| ![Eventos](docs/screenshots/eventos.jpg) | ![Mapa](docs/screenshots/mapa.jpg) |
+
+| Login | Panel de administración |
+|-------|-------------------------|
+| ![Login](docs/screenshots/login.jpg) | ![Admin](docs/screenshots/admin.jpg) |
+
+---
+
 ## 🧱 Stack
 
 | Capa            | Tecnología                                  |
