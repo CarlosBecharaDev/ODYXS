@@ -401,13 +401,35 @@ h1,h2,h3,h4,h5,.display-1,.display-2,.display-3 {
 
 /* ── Datos de interés / Info cards ──────────────────────────── */
 .info-card {
-    border-radius:14px; padding:28px 24px;
-    background:#fff; box-shadow:0 4px 20px rgba(11,45,107,.08);
-    border-left:4px solid var(--gold); transition:.3s;
+    position:relative; height:100%;
+    background:#fff; border:1px solid rgba(11,45,107,.07);
+    border-radius:18px; padding:34px 30px;
+    transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    overflow:hidden;
 }
-.info-card:hover { box-shadow:0 8px 32px rgba(11,45,107,.16); transform:translateX(4px); }
-.info-icon { width:52px; height:52px; border-radius:12px; background:linear-gradient(135deg,var(--azul-mid),var(--azul)); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.info-icon i { color:var(--gold-light); font-size:1.3rem; }
+.info-card::after {
+    content:""; position:absolute; left:30px; bottom:0;
+    height:3px; width:0; border-radius:3px 3px 0 0;
+    background:linear-gradient(90deg,var(--gold),var(--gold-light));
+    transition:width .4s ease;
+}
+.info-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 20px 44px rgba(11,45,107,.10);
+    border-color:transparent;
+}
+.info-card:hover::after { width:52px; }
+.info-icon {
+    width:54px; height:54px; border-radius:16px;
+    background:var(--gold-pale);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:22px; transition:background .4s ease, transform .4s ease;
+}
+.info-card:hover .info-icon { background:var(--azul); transform:rotate(-6deg); }
+.info-icon i { color:var(--gold); font-size:1.35rem; transition:color .4s ease; }
+.info-card:hover .info-icon i { color:var(--gold-light); }
+.info-title { font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.4rem; color:var(--azul); margin-bottom:10px; letter-spacing:.2px; }
+.info-desc { color:#6b7280; font-size:.92rem; line-height:1.7; margin-bottom:0; }
 
 /* ── Época del año / Clima ───────────────────────────────── */
 .clima-card {
